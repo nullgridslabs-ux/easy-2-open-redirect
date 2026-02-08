@@ -1,7 +1,20 @@
 # easy-2-open-redirect/app.py
 from flask import Flask, request, redirect
+import os
 
 app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return """
+<h2>Support Redirect Service</h2>
+<p>Used by support emails and helpdesk links.</p>
+<ul>
+<li>GET /support/redirect</li>
+<li>GET /oauth/callback</li>
+<li>GET /health</li>
+</ul>
+"""
 
 @app.route("/health")
 def health():
@@ -21,5 +34,4 @@ def callback():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=por))
-
+    app.run(host="0.0.0.0", port=port)
